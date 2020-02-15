@@ -27,24 +27,29 @@ it('Consume GET Service with query parameters', async () => {
   expect(response.body.args).to.eql(query);
 });
 
-it('Consume PATCH Service', async () => {
-  const response = await agent.patch('https://httpbin.org/patch');
+it('Consume HEAD Service', async () => {
+  const response = await agent.head('https://httpbin.org/get');
   
   expect(response.status).to.equal(statusCode.OK);
 });
 
-it('Consume PUT Service', async () => {
-  const query = {
-    delay: 1
-  };
+it('Consume PATCH Service', async () => {
+  const response = await agent.patch('https://httpbin.org/patch');
+  
+  expect(response.status).to.equal(statusCode.OK);
+  expect(response.body).to.have.property('headers');
+});
 
-  const response = await agent.put('https://httpbin.org/put');
+it('Consume PUT Service', async () => {
+   const response = await agent.put('https://httpbin.org/put');
 
   expect(response.status).to.equal(statusCode.OK);
+  expect(response.body).to.have.property('origin');
 });
 
 it('Consume DELETE Service', async () => {
   const response = await agent.delete('https://httpbin.org/delete');
 
   expect(response.status).to.equal(statusCode.OK);
+  expect(response.body).to.have.property('headers');
 });
