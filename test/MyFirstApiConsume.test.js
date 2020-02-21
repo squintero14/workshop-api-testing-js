@@ -47,7 +47,7 @@ describe('First Api Tests', () => {
   });
   
   it('Consume DELETE Service', async () => {
-    const response = await agent.delete('https://httpbin.org/delete');
+    const response = await agent.del('https://httpbin.org/delete');
   
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.have.property('headers');
